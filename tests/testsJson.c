@@ -3,8 +3,7 @@
 #include <locale.h>
 #include <time.h>
 
-int main()
+void test_taille_name()
 {
-    
-    return 0;
+
 }

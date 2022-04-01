@@ -49,7 +49,7 @@ int deleteUser(char idUser[])
     FILE* ftemp = NULL;
 
     fUser = fopen("../textfiles/users.txt", "r");
-    ftemp = fopen("ftemp.txt", "w");
+    ftemp = fopen("../textfiles/temp.txt", "w");
 
     struct User joueur[100];
     int count = 0;
@@ -73,7 +73,7 @@ int deleteUser(char idUser[])
     }
 
     fUser = fopen("../textfiles/users.txt", "w");
-    ftemp = fopen("ftemp.txt", "r");
+    ftemp = fopen("../textfiles/temp.txt", "r");
 
     if (fUser != NULL && ftemp != NULL)
     {
@@ -83,7 +83,7 @@ int deleteUser(char idUser[])
         }
 
         fclose(ftemp);
-        remove("ftemp.txt");
+        remove("../textfiles/temp.txt");
         fclose(fUser);
 
     }

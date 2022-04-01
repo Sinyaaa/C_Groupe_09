@@ -18,7 +18,7 @@
 #define LONG_MAX_LASTNAME_PL 35
 #define LONG_MAX_PWD_PL 12
 
-#define LONG_PASS 12 +1
+#define LONG_PASS 12
 #define MAX_YEAR 9999
 #define MIN_YEAR 1800
 
@@ -36,5 +36,7 @@ struct User
 
 int addUser(struct User registerPlayer);
 int deleteUser(char idUser[]);
+unsigned checkExistUser(char * pId_pl);
+unsigned checkDataUser(struct User * pUser);
 void *encrypt(const unsigned char *password, unsigned char *encrypted, size_t size);
 void *decrypt(const unsigned char *encrypted, unsigned char *decrypted, size_t size);

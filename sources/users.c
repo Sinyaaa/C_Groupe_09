@@ -16,7 +16,7 @@ int erreurDeFichier(FILE *monFichier)
 int addUser(struct User registerUser)
 {
     FILE *fUser=NULL;
-    fUser=fopen("fUser.txt", "a");
+    fUser=fopen("../textfiles/users.txt", "a");
     int done = 0;
 
     if (fUser != NULL)
@@ -48,8 +48,8 @@ int deleteUser(char idUser[])
     FILE* fUser = NULL;
     FILE* ftemp = NULL;
 
-    fUser = fopen("fUser.txt", "r");
-    ftemp = fopen("ftemp.txt", "w");
+    fUser = fopen("../textfiles/users.txt", "r");
+    ftemp = fopen("../textfiles/temp.txt", "w");
 
     struct User joueur[100];
     int count = 0;
@@ -72,8 +72,8 @@ int deleteUser(char idUser[])
         fclose(ftemp);
     }
 
-    fUser = fopen("fUser.txt", "w");
-    ftemp = fopen("ftemp.txt", "r");
+    fUser = fopen("../textfiles/users.txt", "w");
+    ftemp = fopen("../textfiles/temp.txt", "r");
 
     if (fUser != NULL && ftemp != NULL)
     {
@@ -83,7 +83,7 @@ int deleteUser(char idUser[])
         }
 
         fclose(ftemp);
-        remove("ftemp.txt");
+        remove("../textfiles/temp.txt");
         fclose(fUser);
 
     }
@@ -92,6 +92,53 @@ int deleteUser(char idUser[])
 }
 
 // int modifUser(){}
+
+unsigned checkExistUser(char * pId_pl)
+{
+    FILE* fUser = NULL;
+
+    struct User joueur[100]; // Tableau
+
+    int count = 0;
+    int exist = 0;
+
+    fUser = fopen("../textfiles/users.txt", "r");
+
+    if(fUser != NULL)
+    {
+
+        while(fscanf(fUser,"%s %s %s %s %d %d\n", joueur[count].id_pl,joueur[count].firstName_pl, joueur[count].lastName_pl, joueur[count].pwd_pl, &joueur[count].type_pl, &joueur[count].enabled_pl) != EOF)
+        {
+            if (strcmp(pId_pl, joueur[count].id_pl) == 0)
+            {
+                exist = 1;
+            }
+            count++;
+        }
+
+        fclose(fUser);
+    }
+
+    return exist;
+}
+
+unsigned checkDataUser(struct User * pUser)
+{
+
+    //Verifie la longueur MIN des informations joueurs
+    if ( strlen(pUser->id_pl) < LONG_MIN_ID_PL) return 0;
+    if ( strlen(pUser->firstName_pl) < LONG_MIN_FIRSTNAME_PL) return 0;
+    if ( strlen(pUser->lastName_pl) < LONG_MIN_LASTNAME_PL) return 0;
+    if ( strlen(pUser->pwd_pl) < LONG_MIN_PWD_PL) return 0;
+
+    //Verifie la longueur MAX  des informations joueurs
+    if ( strlen(pUser->id_pl) > LONG_MAX_ID_PL) return 0;
+    if ( strlen(pUser->firstName_pl) > LONG_MAX_FIRSTNAME_PL) return 0;
+    if ( strlen(pUser->lastName_pl) > LONG_MAX_LASTNAME_PL) return 0;
+    if ( strlen(pUser->pwd_pl) > LONG_MAX_PWD_PL) return 0;
+
+    return 1;
+}
 
 
 void *encrypt(const unsigned char *password, unsigned char *encrypted, size_t size)

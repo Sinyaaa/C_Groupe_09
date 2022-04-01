@@ -1,8 +1,8 @@
 #include "main_tests.h"
 
-int main_test()
+int main()
 {
     testUsers();
-    // testJson();
+    //testJson();
     return 0;
 }

@@ -1,0 +1,23 @@
+{
+    "CarList": [
+        {
+            "Brand": "Renault",
+            "Model": "ZOE",
+            "Cost": 32500.00,
+            "OptionList": [
+                {
+                    "Name": "Peinture métallisée",
+                    "Cost": 1000.00
+                },
+                {
+                    "Name": "GPS",
+                    "Cost": 1700.00
+                },
+                {
+                    "Name": "Jantes 16 pouces",
+                    "Cost": 800.00
+                }
+            ]
+        }
+    ]
+}

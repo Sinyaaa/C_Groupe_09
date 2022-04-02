@@ -2,5 +2,6 @@
     "files.associations": {
         "windows.h": "c",
         "users.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

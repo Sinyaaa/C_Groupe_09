@@ -1,8 +1,10 @@
 #ifndef __JSON_H__
 #define __JSON_H__
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <time.h>
 #include <string.h>
 
 #define DIM 20

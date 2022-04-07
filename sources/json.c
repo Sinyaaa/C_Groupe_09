@@ -1,34 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <time.h>
-#include <string.h>
+#include "json.h"
+
 
 unsigned jsonPrimitive(char *chaineJson, char *nomAttribut, char *resultat, unsigned dim,char *messageErreur)
 {
 
-    //Ouverture du fichier "marques modeles"
-    FILE* p_mm = fopen("marques_modeles.json", "r");
+    char cles[100][dim];
+    char valeurs[100][dim];
 
-    //Message d'erreur si le fichier ne s'ouvre pas
-    if (p_mm == NULL)
+    int indiceCle = 0;
+    int indiceValeur = 0;
+
+    int len = strlen(chaineJson);
+    int valeurOuCle = 0;
+    int i = 0;
+
+    while (chaineJson[i] =! '}')
     {
-        printf("Erreur de l'ouverture\n");
-        return -1
+        if (chaineJson[i] == '"' && chaineJson[i+1] != ':')
+        {
+            char mot[dim];
+            int j = i + 1;
+            int k = 0;
+
+            while (chaineJson[j] != '"')
+            {
+                mot[k] = chaineJson[j];
+                j++;
+                i++;
+                k++;
+            }
+
+            if (valeurOuCle % 2 == 0)
+            {
+                strcpy(cles[indiceCle], mot);
+                indiceCle++;
+            }
+            else
+            {
+                strcpy(valeurs[indiceValeur], mot);
+                indiceValeur++;
+            }
+            valeurOuCle++;
+        }
+        i++;
     }
 
-    resultat = 0;
-
-    while (resultat != EOF)
+    for (int i = 0; i < indiceCle; i++;)
     {
-        resultat = fgetc(p_mm);
-        printf("%c", (char)resultat);
+        if (strcmp( cles[i], nomAttribut ) == 0)
+        {
+            if (strlen( cles[i], nomAttribut ) == 0)
+            {
+                strcpy(resultat, valeurs[i]); 
+                return 1;
+            }
+            else
+            {
+                char message[30] = "La taille dépasse la limite";
+                strcpy(messageErreur, message);
+                return 0;
+            }
+        }
     }
     
-    //fermeture du fichier "marques modeles"
-    fclose(p_mm);
-
-
+    strcpy(messageErreur, "Non trouvé");
     return 0;
 }
 

@@ -1,6 +1,28 @@
 #include "json.h"
 
+// === === Fonction 0 === ===
+//sert a enlever les espaces blanc dans la chaine de caractère
 
+char *supp_esp_blanc(char *str)
+{
+    int i = 0, j = 0;
+
+    while (str[i])
+    {
+        if (str[i] != ' ')
+        {
+            str[j++] = str[i];
+        }
+        i++;
+    }
+    
+    str[j] = '\0';
+
+    return str; 
+}
+// === === ----- === ===
+
+// === === Fonction 1 === ===
 unsigned jsonPrimitive(char *chaineJson, char *nomAttribut, char *resultat, unsigned dim,char *messageErreur)
 {
 
@@ -66,14 +88,14 @@ unsigned jsonPrimitive(char *chaineJson, char *nomAttribut, char *resultat, unsi
     strcpy(messageErreur, "Non trouvé");
     return 0;
 }
+// === === ----- === ===
 
-
-
+// === === Fonction 2 === ===
 unsigned jsonArray(char *chaineJson, char *nomAttribut, char resultats[][DIM], unsigned *nbElements, char *messageErreur)
 {
 
 
 }
-
+// === === ----- === ===
 
 

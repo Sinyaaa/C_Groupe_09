@@ -60,20 +60,29 @@ void executerSQL(char *instructionSQL)
   }
 }
 
-void recupFichier(char *ligne, marque marque) 
+int recupFichier(char *ligne, marque marque) 
 {
+  if (ligne != NULL) 
+  {
   static char *virgule = ",";
 
   strcpy(marque.id, strtok(ligne, virgule));
   strcpy(marque.name, strtok(NULL, virgule));
   strcpy(marque.niceName, strtok(NULL, virgule));
+  } else return 1;
+
+  return 0;
 }
 
-void recupMarque(marque marque, char *erreur) 
-{
-  jsonPrimitive(marque.id, "id", marque.id, 30, erreur);
-  jsonPrimitive(marque.name, "name", marque.name, 30, erreur);
-  jsonPrimitive(marque.niceName, "niceName", marque.niceName, 30, erreur);
+int recupMarque(marque marque, char *erreur) 
+{ 
+  if (marque.id != NULL || marque.name != NULL || marque.niceName != NULL) 
+  {
+    jsonPrimitive(marque.id, "id", marque.id, 30, erreur);
+    jsonPrimitive(marque.name, "name", marque.name, 30, erreur);
+    jsonPrimitive(marque.niceName, "niceName", marque.niceName, 30, erreur);
+  } else return 1;
+  return 0
 }
 
 void remplirSQL(marque marque) 

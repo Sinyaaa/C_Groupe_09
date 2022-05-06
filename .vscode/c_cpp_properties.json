@@ -4,7 +4,11 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\Program Files\\MariaDB\\MariaDB Connector C 64-bit\\include"
+
+                "C:\\Program Files\\MariaDB\\MariaDB Connector C 64-bit\\include",
+                "C:/Program Files/MariaDB/MariaDB Connector C 64-bit/include/**",
+                "C:/Program Files/MariaDB/MariaDB Connector C 64-bit/include"
+
             ],
             "defines": [
                 "_DEBUG",
@@ -14,9 +18,12 @@
             "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
+            "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4
+
 }
+
 

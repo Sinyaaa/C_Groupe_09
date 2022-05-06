@@ -1,7 +1,8 @@
 {
     "files.associations": {
-        "windows.h": "c",
-        "users.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
+        "json.h": "c",
+        "users.h": "c",
+        "unity.h": "c",
+        "typeinfo": "c"
+    }
 }
